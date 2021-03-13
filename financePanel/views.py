@@ -6,5 +6,5 @@ from django.http import HttpResponse
 def test(request):
     return HttpResponse('heellooooo')
 
-def hi(request):
-    return HttpResponse('hiii')
+def index(request):
+    return render(request, 'financePanel/index.html')
