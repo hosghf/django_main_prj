@@ -8,3 +8,6 @@ def test(request):
 
 def index(request):
     return render(request, 'financePanel/index.html')
+
+def test(request):
+    return render(request, 'financePanel/test.html')
