@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 from .models import stockPrice
 from .forms import stockModelForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -14,6 +15,19 @@ def test(request):
     # test2 = stockPrice.objects.all()
     # context = {'test2': test2, 'stock': stock}
     return render(request, 'financePanel/test.html', {'test2': test2})
+
+def stocksIndex(request):
+    stocks = stockPrice.objects.all()
+    paginator = Paginator(stocks, 10)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'stocks' : stocks,
+        'page_obj': page_obj
+    }
+    return render(request, 'financePanel/stocks_index.html', context)
 
 def stocksCreate(request):
     if request.method == 'POST':
@@ -45,7 +59,7 @@ def stocksUpdate(request, pk):
         else:
             context = { 'form': form }
             return render(request, 'financePanel/stocks_update.html', context)
-                
+
     form = stockModelForm(instance=stock)
     context = {
         'form': form,

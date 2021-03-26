@@ -8,95 +8,7 @@
                 <h4 class="m-b-0 text-white">Insert stock</h4>
             </div>
             <div class="card-body">
-                <!-- <form action="" method="post" class="form-horizontal form-bordered">
-                    {% csrf_token %}
-                    <div class="form-body text-light">
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">name</label>
-                            <div class="col-md-9">
-                                <input name='name' type="text" placeholder="stock name" class="form-control">
-                                <small class="form-control-feedback"> This is stock name</small> </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">symbol</label>
-                            <div class="col-md-9">
-                                <input name="symbol" type="text" placeholder="crypto, forex, ..." class="form-control">
-                                <small class="form-control-feedback"> This is symbol </small> </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">market</label>
-                            <div class="col-md-9">
-                                <select name="market" class="form-control custom-select">
-                                    <option value="">crypto</option>
-                                    <option value="">forex</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">stok_type</label>
-                            <div class="col-md-9">
-                                <input name="stok_type" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">size</label>
-                            <div class="col-md-9">
-                                <input name="size" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">open at</label>
-                            <div class="col-md-9">
-                                <input name="open" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">low</label>
-                            <div class="col-md-9">
-                                <input name="low" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">high</label>
-                            <div class="col-md-9">
-                                <input name="high" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">close_price</label>
-                            <div class="col-md-9">
-                                <input name="close_price" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">volum</label>
-                            <div class="col-md-9">
-                                <input name="volum" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="offset-sm-3 col-md-9 ml-5">
-                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Submit</button>
-                                        <button type="button" class="btn btn-inverse">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form> -->
-
                 {% load custom_tags %}
-
                 <form action="" method="post" novalidate class="form-horizontal form-bordered">
                     {% csrf_token %}
                     <div class="form-body text-light">
@@ -119,70 +31,6 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
-                   
-                        <!-- <div class="form-group row">
-                            <label class="control-label text-right col-md-3">symbol</label>
-                            <div class="col-md-9">
-                                <input name="symbol" type="text" placeholder="crypto, forex, ..." class="form-control">
-                                <small class="form-control-feedback"> This is symbol </small> </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">market</label>
-                            <div class="col-md-9">
-                                <select name="market" class="form-control custom-select">
-                                    <option value="">crypto</option>
-                                    <option value="">forex</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">stok_type</label>
-                            <div class="col-md-9">
-                                <input name="stok_type" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">size</label>
-                            <div class="col-md-9">
-                                <input name="size" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">open at</label>
-                            <div class="col-md-9">
-                                <input name="open" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">low</label>
-                            <div class="col-md-9">
-                                <input name="low" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">high</label>
-                            <div class="col-md-9">
-                                <input name="high" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">close_price</label>
-                            <div class="col-md-9">
-                                <input name="close_price" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label text-right col-md-3">volum</label>
-                            <div class="col-md-9">
-                                <input name="volum" type="text" class="form-control">
-                            </div>
-                        </div> -->
                     </div> 
                     <div class="form-actions">
                         <div class="row">
@@ -201,5 +49,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
