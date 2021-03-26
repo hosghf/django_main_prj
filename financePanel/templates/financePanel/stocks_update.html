@@ -1,0 +1,53 @@
+{% extends 'financePanel/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-outline-info">
+            <div class="card-header">
+                <h4 class="m-b-0 text-white">Insert stock</h4>
+            </div>
+            <div class="card-body">
+                {% load custom_tags %}
+                <form action="" method="post" novalidate class="form-horizontal form-bordered">
+                    {% csrf_token %}
+                    <div class="form-body text-light">
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <div class="form-group row">
+                                    <label class="control-label text-right col-md-3">{{ field.label }}</label>
+                                    <div class="col-md-9 controls">
+                                       {{ field|add_classes:'form-control border border-danger'}}
+                                       <small class="form-text text-danger">{% for error in  field.errors %}{{ error }}{% endfor %}</small>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="form-group row">
+                                    <label class="control-label text-right col-md-3">{{ field.label }}</label>
+                                    <div class="col-md-9 controls">
+                                      {{ field|add_classes:'form-control'}}
+                                      <small>{{ field.help_text }}</small>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div> 
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="offset-sm-3 col-md-9 ml-5">
+                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Submit</button>
+                                        <button type="button" class="btn btn-inverse">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
