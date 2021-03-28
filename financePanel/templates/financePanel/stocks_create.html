@@ -1,5 +1,10 @@
 {% extends 'financePanel/base.html' %}
 
+{% block css %}
+    {% load static %}
+    <link href="{% static 'financePanel/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
 {% block content %}
 <div class="row">
     <div class="col-lg-12">
@@ -17,16 +22,30 @@
                                 <div class="form-group row">
                                     <label class="control-label text-right col-md-3">{{ field.label }}</label>
                                     <div class="col-md-9 controls">
-                                       {{ field|add_classes:'form-control border border-danger'}}
+
+                                       {% if field.label == 'open' %}
+                                            {{ field|add_classes:'form-control border border-danger mydatepicker'}}
+                                            <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                        {% else %}
+                                            {{ field|add_classes:'form-control border border-danger'}}
+                                        {% endif %}
                                        <small class="form-text text-danger">{% for error in  field.errors %}{{ error }}{% endfor %}</small>
+                                    
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="form-group row">
                                     <label class="control-label text-right col-md-3">{{ field.label }}</label>
                                     <div class="col-md-9 controls">
-                                      {{ field|add_classes:'form-control'}}
-                                      <small>{{ field.help_text }}</small>
+                                        {% if field.name == 'open' %}
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                                <input name="open" autocomplete="off" id="datepicker-autoclose" class="form-control" placeholder="mm/dd/yyyy">
+                                            </div>
+                                        {% else %}
+                                            {{ field|add_classes:'form-control'}}
+                                        {% endif %}
+                                        <small>{{ field.help_text }}</small>
                                     </div>
                                 </div>
                             {% endif %}
@@ -49,4 +68,15 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'financePanel/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+    <script>
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
 {% endblock %}
