@@ -24,8 +24,10 @@
                                     <div class="col-md-9 controls">
 
                                        {% if field.label == 'open' %}
-                                            {{ field|add_classes:'form-control border border-danger mydatepicker'}}
-                                            <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                                <input name="open" autocomplete="off" id="datepicker-autoclose" class="form-control" placeholder="mm/dd/yyyy">
+                                            </div>
                                         {% else %}
                                             {{ field|add_classes:'form-control border border-danger'}}
                                         {% endif %}
