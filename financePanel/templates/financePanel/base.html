@@ -24,6 +24,7 @@
     <link href="{% static 'financePanel/css/style.css' %}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="{% static 'financePanel/css/colors/green-dark.css' %}" id="theme" rel="stylesheet">
+    {% block css %} {% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -729,6 +730,7 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="{% static 'financePanel/assets/plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
+    {% block js %} {% endblock %}
 </body>
 
 </html>

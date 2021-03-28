@@ -4,6 +4,12 @@ from django.http import HttpRequest
 from .models import stockPrice
 from .forms import stockModelForm
 from django.core.paginator import Paginator
+import os
+import csv
+
+# for cvs file
+from django.conf import settings
+from django.core.files.storage import default_storage
 
 # Create your views here.
 
@@ -66,3 +72,39 @@ def stocksUpdate(request, pk):
         'stock' : stock 
     }
     return render(request, 'financePanel/stocks_update.html', context)
+
+
+def excelToDb(request):
+    if request.method == 'GET':
+        print('this is settings: ' + str(settings.BASE_DIR))
+        return render(request, "financePanel/excel_to_db.html")
+    
+    csvFile = request.FILES['mfile']
+    path = os.path.join(settings.BASE_DIR, 'tmp')
+    
+    if not os.path.isdir(path):
+        os.mkdir(path, mode = 0o777)
+        
+    path = default_storage.save(path + '/' + str(csvFile) , csvFile)
+
+    with open(path) as f:
+        reader = csv.reader(f)
+        next(f)
+        for row in reader:
+            print(row)
+            created = stockPrice.objects.get_or_create(
+                name=row[0],
+                symbol=row[1],
+                market=row[2],
+                stok_type=row[3],
+                size=row[4],
+                open=row[5],
+                low=row[6],
+                high=row[7],
+                close_price=row[8],
+                volum=row[9],
+                )
+                
+    default_storage.delete(path)
+    
+    return render(request, "financePanel/excel_to_db.html")
