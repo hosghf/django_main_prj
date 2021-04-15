@@ -38,7 +38,7 @@ def stocksCreate(request):
             print('form is save')
             return redirect('/finance-admin/stocks/create')
         else: 
-            print('noooooooooooooooooooooooooottt vaaaaaliiiiiiiid')
+            print('not vaaliiid')
             context = { 'form': form }
             return render(request, 'financePanel/stocks_create.html', context)
 
@@ -71,9 +71,9 @@ def stocksUpdate(request, pk):
 
 def excelToDb(request):
     if request.method == 'GET':
-        print('this is settings: ' + str(settings.BASE_DIR))
         return render(request, "financePanel/excel_to_db.html")
     
+    # print('this is settings: ' + str(settings.BASE_DIR))
     csvFile = request.FILES['mfile']
     path = os.path.join(settings.BASE_DIR, 'tmp')
     
@@ -141,6 +141,9 @@ def getFinanceData(request):
 def candle(request):
     return render(request, 'financePanel/candle.html')
 
+def histogram(request):
+    return render(request, 'financePanel/histogram.html')
+
 def candle2(request):
 
     low = []
@@ -158,8 +161,12 @@ def candle2(request):
         dateTo = request.POST['dateTo']
         stock = False
 
-        if(dateFrom and dateTo):
+        if(symbol and dateFrom and dateTo):
             stock = stockPrice.objects.filter(symbol=symbol, date__range=(dateFrom, dateTo))
+        elif(symbol):
+            stock = stockPrice.objects.filter(symbol=symbol)
+
+
 
         if(stock):
             for rec in stock:

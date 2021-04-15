@@ -11,14 +11,15 @@
                         <tr>
                             <th>name</th>
                             <th>symbol</th>
+                            <th>date</th>
                             <th>market</th>
                             <th>stok_type</th>
                             <th>size</th>
                             <th>open</th>
                             <th>low</th>
                             <th>high</th>
-                            <th>close_price</th>
-                            <th>volum</th>
+                            <th>close</th>
+                            <th>volume</th>
                         </tr>
                     </thead>
                     <tbody class="text-light">
@@ -26,11 +27,19 @@
                             <tr>
                                 <td>{{ stock.name }}</td>
                                 <td>{{ stock.symbol }}</td>
+                                <td>{{ stock.date }}</td>
                                 <td>
+                                    {% if stock.open < stock.close_price %}
+                                    <span class="text-success text-semibold">
+                                        <i class="fa fa-level-up" aria-hidden="true"></i>
+                                        {{ stock.market }}
+                                    </span>
+                                    {% else %}
                                     <span class="text-danger text-semibold">
                                         <i class="fa fa-level-down" aria-hidden="true"></i>
                                         {{ stock.market }}
                                     </span>
+                                    {% endif %}
                                 </td>
                                 <td>{{ stock.stok_type }}</td>
                                 <td>{{ stock.size }}</td>
@@ -38,7 +47,7 @@
                                 <td>{{ stock.low }}</td>
                                 <td>{{ stock.high }}</td>
                                 <td>{{ stock.close_price }}</td>
-                                <td>{{ stock.volum }}</td>
+                                <td>{{ stock.volume }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

@@ -12,6 +12,7 @@ urlpatterns = [
 
     path('candle', views.candle, name="candle"),
     path('candle2', views.candle2, name="candle2"),
+    path('histogram', views.histogram, name="histogram"),
 
     path('getFinanceData', views.getFinanceData, name="yfinance")
 ]

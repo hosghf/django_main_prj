@@ -1,0 +1,30 @@
+{% extends 'financePanel/base.html' %}
+
+{% block content %}
+    <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <!-- Plotly.js -->
+    <script src="{% static 'financePanel/assets/plugins/plotlyjs/plotly-latest.min.js' %}"></script>
+    <!-- PlotlyFinance.js -->
+    <!-- <script src="{% static 'financePanel/assets/plugins/plotlyjs/plotlyjs-finance.js' %}"></script> -->
+
+    <script>
+        var x = [];
+        for (var i = 0; i < 500; i ++) {
+            x[i] = Math.random();
+        }
+
+        var trace = {
+            x: x,
+            type: 'histogram',
+        };
+        var data = [trace];
+        Plotly.newPlot('myDiv', data);
+
+    </script>
+
+{% endblock %}
+

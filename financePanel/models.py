@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class stockPrice(models.Model):
-    name = models.CharField(max_length=30, help_text="hellooo")
+    name = models.CharField(max_length=30, help_text="stock name")
     symbol = models.CharField(max_length=30, default=12)
     market = models.CharField(null=True, blank=True,max_length=30)
     stok_type = models.CharField(null=True, blank=True,max_length=1)
